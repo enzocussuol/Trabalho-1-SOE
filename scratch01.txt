@@ -1,0 +1,12 @@
+
+        Situações
+
+-Voo chegou
+-Voo está com atraso
+-Voo está chegando em 10 minutos
+
+        Situação complexa
+
+-Se X voos estiveram com atraso avisar 
+lentidão
+-Se chegarem X voos ao mesmo tempo
