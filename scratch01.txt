@@ -1,12 +1,15 @@
+########################TEMPERATURA(https://open-meteo.com/)#######################
 
         Situações
 
--Voo chegou
--Voo está com atraso
--Voo está chegando em 10 minutos
+- Temperatura variou +- 5
+- Escala de Beaufort (vento)
+- Indice UV elevado
+- Chance de precipitação
 
         Situação complexa
 
--Se X voos estiveram com atraso avisar 
-lentidão
--Se chegarem X voos ao mesmo tempo
+- Temperatura alta e alto indice UV (Passe protetor e procure ficar na sombra)
+- Chuva e Vento (Se agaselhe e evite sair na rua)
+
+https://kafka-python.readthedocs.io/en/master/ -> Kafka
