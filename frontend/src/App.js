@@ -46,12 +46,7 @@ export function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("https://179.234.237.25:8000/", {
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      });
+      const response = await fetch("http://127.0.0.1:30000/");
 
       console.log(response);
 
