@@ -48,13 +48,14 @@ export function App() {
     const fetchData = async () => {
       const response = await fetch("http://127.0.0.1:30000/");
 
-      console.log(response);
-
       const json = await response.json();
 
-      console.log(json);
-
-      setData(json.data);
+      const list = [['State', 'Temperature']];
+      json.list.map((element) => {
+        list.push([element.code, element.data.temperature])
+      })
+      
+      setData(list);
     }
 
     fetchData();
