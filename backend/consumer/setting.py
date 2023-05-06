@@ -1,0 +1,4 @@
+global ITEM 
+ITEM = {
+    "list": []
+}

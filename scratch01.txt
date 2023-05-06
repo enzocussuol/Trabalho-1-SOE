@@ -1,3 +1,8 @@
+[TODO]
+
+Produtor irá enviar para o kafka como um blocão. 
+Ao dar GET na API, será lido apenas o último dado do consumidor Kafka, que será retornado para o frontend.
+
 ########################TEMPERATURA(https://open-meteo.com/)#######################
 
         Situações
