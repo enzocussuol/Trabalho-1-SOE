@@ -2,8 +2,8 @@
 
         Situações
 
-- Temperatura variou +- 5
-- Escala de Beaufort (vento)
+- Temperatura
+- Vento
 - Indice UV elevado
 - Chance de precipitação
 
@@ -11,5 +11,39 @@
 
 - Temperatura alta e alto indice UV (Passe protetor e procure ficar na sombra)
 - Chuva e Vento (Se agaselhe e evite sair na rua)
+- Variação brusca de temperatura 5 graus em 1 horas.
 
 https://kafka-python.readthedocs.io/en/master/ -> Kafka
+
+
+@enzo -> pip install kafka-python
+
+TOPICOS
+
+- Produtor:
+        -> Publica em Clima (temp, prec, wind, uv)
+-  Consumidor Primario (TOPICO TEMPO):
+        -> Escuta em Clima (temp, prec, wind, uv)
+        -> Manda pro back=>frontend (
+                -> temp, prec, wind, uv
+        )
+        -> Publica em Avisos (Temperatura Alta, UV Alta, Prec Alta, Wind Alto)
+-  Consumidor Secundario (TOPICO AVISOS):
+        -> Escuta em Avisos do kafka ( Primario )
+        -> Manda pro back=>frontend (
+                -> Flag de situações complexas
+        )
+
+COMANDOS:
+
+Iniciar o Zookeeper:
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+Iniciar o kafka:
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+Criar um topico:
+.\bin\windows\kafka-topics.bat --create --topic clima --bootstrap-server localhost:9092
+
+Observar um topico:
+.\bin\windows\kafka-console-consumer.bat --topic clima --bootstrap-server localhost:9092 --from-beginning
