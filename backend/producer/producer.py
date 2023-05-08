@@ -22,9 +22,7 @@ while True:
     # Get Info on OpenMeteo
     data = client.get_locations_weather()
 
-    #Send to Api
-    for info in data['data']:
-        producer.send('clima', info).add_callback(on_send_success).add_errback(on_send_error)
+    producer.send('clima', data).add_callback(on_send_success).add_errback(on_send_error)
 
     #Sleep
     time.sleep(60*30)

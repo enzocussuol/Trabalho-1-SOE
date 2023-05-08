@@ -34,7 +34,10 @@ import { Chart } from 'react-google-charts';
 
 export const options = {
   region: "BR",
-  colorAxis: { colors: ["#00853f", "black", "#e31b23"] },
+  colorAxis: { 
+              colors: ["blue", "aqua", "green", "yellow", "orange", "red"],
+              values:[0, 35]
+            },
   resolution: 'provinces',
   backgroundColor: "",
   datalessRegionColor: "#123456",
@@ -46,12 +49,13 @@ export function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://127.0.0.1:30000/");
+      const response = await fetch("http://127.0.0.1:30000/clima");
 
       const json = await response.json();
+      console.log(json)
 
       const list = [['State', 'Temperature']];
-      json.list.map((element) => {
+      json.data.map((element) => {
         list.push([element.code, element.data.temperature])
       })
       

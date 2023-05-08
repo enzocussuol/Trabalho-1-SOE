@@ -1,33 +1,47 @@
-from kafka import KafkaProducer, KafkaConsumer
+from kafka import KafkaProducer, KafkaConsumer, TopicPartition
 import json
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
 
+TOPIC="clima"
+
 # To consume latest messages and auto-commit offsets
-consumer = KafkaConsumer('clima',
-                        bootstrap_servers=['localhost:9092'],
-                        value_deserializer=lambda m: json.loads(m.decode('utf-8')))
+consumer = KafkaConsumer(bootstrap_servers=['localhost:9092'],
+                        value_deserializer=lambda m: json.loads(m.decode('utf-8')),
+                        auto_offset_reset='earliest')
 
 producer = KafkaProducer(bootstrap_servers=['localhost:9092'],value_serializer=lambda m: json.dumps(m).encode('utf-8'))
 
-@app.get("/clima")
-async def root():
-    print(item)
 
-    json_compatible_item_data = jsonable_encoder(item)
+def get_last_offset():
 
-    print(json_compatible_item_data)
+    # # print(consumer.assignment())
+    
+    # tp = TopicPartition(TOPIC, 0)
+    # #consumer.assign([tp])
 
-    return JSONResponse(content=json_compatible_item_data)
+    # end_offsets = consumer.end_offsets([tp])
 
-item = {
-    "list": [
-        {"location": "Rio Branco", "code": "BR-AC", "data": {"temperature": 30.1, "precipitation": 39}}, 
-        {"location": "Maceio", "code": "BR-AL", "data": {"temperature": 28.5, "precipitation": 30}}, 
-        {"location": "Manaus", "code": "BR-AM", "data": {"temperature": 29.4, "precipitation": 77}}
-    ]
-}
+    # last_offset = end_offsets[tp]
 
-    # while True:
-    #     for msg in consumer:
-    #          continue
+    # print(last_offset)
+
+    # # print(item)
+    # # print(type(item))
+    # # return item
+    
+    # # consumer.seek(tp, last_offset-1)
+    
+    # item = consumer.poll()
+    # print(item)
+    
+    consumer.subscribe(TOPIC)
+    partition = TopicPartition(TOPIC, 0)
+    end_offset = consumer.end_offsets([partition])
+    consumer.seek(partition,list(end_offset.values())[0]-1)
+
+    for m in consumer:
+        item = m
+        break
+
+    return item.value
