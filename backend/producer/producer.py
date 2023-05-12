@@ -2,7 +2,6 @@ from kafka import KafkaProducer
 from kafka.errors import KafkaError
 import json
 import time
-
 import OpenMeteoClient as omc
 
 producer = KafkaProducer(bootstrap_servers=['localhost:9092'],value_serializer=lambda m: json.dumps(m).encode('utf-8'))
