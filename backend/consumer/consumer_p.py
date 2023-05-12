@@ -10,9 +10,8 @@ consumer = KafkaConsumer(bootstrap_servers=['localhost:9092'],
                         value_deserializer=lambda m: json.loads(m.decode('utf-8')),
                         auto_offset_reset='earliest')
 
-producer = KafkaProducer(bootstrap_servers=['localhost:9092'],value_serializer=lambda m: json.dumps(m).encode('utf-8'))
-
-
+offsets = []
+# SIMPLE CONSUMER -----------------------------------
 def get_last_offset():
 
     # # print(consumer.assignment())
@@ -42,6 +41,23 @@ def get_last_offset():
 
     for m in consumer:
         item = m
+        offsets.append(item.value)
         break
 
     return item.value
+
+# COMPLEX PRODUCER ------------------------------
+def on_send_success(record_metadata):
+    print(f"Evento enviado com sucesso no topico {record_metadata.topic} na partição {record_metadata.partition} com offset {record_metadata.offset}")
+
+def on_send_error(excp):
+    print(excp)
+    print("ERROR SENDING TO KAFKA")
+
+producer = KafkaProducer(bootstrap_servers=['localhost:9092'],value_serializer=lambda m: json.dumps(m).encode('utf-8'))
+
+# # def save_last_offsets():
+# #     if(len(offsets) > 5):
+
+
+# #     return item.value
