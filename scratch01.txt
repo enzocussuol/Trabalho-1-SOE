@@ -16,7 +16,7 @@ Ao dar GET na API, será lido apenas o último dado do consumidor Kafka, que ser
 
 - Temperatura alta e alto indice UV (Passe protetor e procure ficar na sombra)
 - Chuva e Vento (Se agaselhe e evite sair na rua)
-- Variação brusca de temperatura 5 graus em 1 horas.
+- Variação brusca de temperatura 5 graus em 1 hora
 
 https://kafka-python.readthedocs.io/en/master/ -> Kafka
 
