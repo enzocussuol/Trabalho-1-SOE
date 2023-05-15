@@ -43,3 +43,5 @@ npm start
 ```
 
 A aplicação estará disponível em localhost:8000
+
+![alt text](arch.png)
