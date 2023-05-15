@@ -13,32 +13,11 @@ consumer = KafkaConsumer(bootstrap_servers=['localhost:9092'],
 # SIMPLE CONSUMER -----------------------------------
 def get_last_offset():
 
-    # # print(consumer.assignment())
-    
-    # tp = TopicPartition(TOPIC, 0)
-    # #consumer.assign([tp])
-
-    # end_offsets = consumer.end_offsets([tp])
-
-    # last_offset = end_offsets[tp]
-
-    # print(last_offset)
-
-    # # print(item)
-    # # print(type(item))
-    # # return item
-    
-    # # consumer.seek(tp, last_offset-1)
-    
-    # item = consumer.poll()
-    # print(item)
-    
     consumer.subscribe(TOPIC)
     partition = TopicPartition(TOPIC, 0)
     end_offset = consumer.end_offsets([partition])
     consumer.seek(partition,list(end_offset.values())[0]-1)
 
-    #a k a leen beef patty 
     for m in consumer:
         item = m
         break
