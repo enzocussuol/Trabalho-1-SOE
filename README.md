@@ -45,3 +45,7 @@ npm start
 A aplicação estará disponível em localhost:8000
 
 ![alt text](arquitetura.png)
+
+## Imagens
+
+Dentro do diretório images, encontram-se imagens do frontend do sistema.
