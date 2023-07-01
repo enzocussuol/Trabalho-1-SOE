@@ -9,7 +9,7 @@ zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties
 ```
 
 ```
-kafka-server-start.sh /opt/kafka/config/server.properties.properties
+kafka-server-start.sh /opt/kafka/config/server.properties
 ```
 
 Depois disso, criar os tópicos "clima" e "avisos":
