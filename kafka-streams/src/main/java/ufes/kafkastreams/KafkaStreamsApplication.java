@@ -3,16 +3,19 @@ package ufes.kafkastreams;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.common.utils.Bytes;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.errors.StreamsUncaughtExceptionHandler;
 import org.apache.kafka.streams.kstream.*;
+import org.apache.kafka.streams.state.KeyValueStore;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -60,31 +63,33 @@ public class KafkaStreamsApplication {
 		/**
 		 * Variação brusca de temperatura 5 graus em 1 hora
 		 */
+		Aggregator<String, String, ArrayList<String>> agg = (location, temp, hist) -> {
+			hist.add(temp);
+			return hist;
+		};
+
+		KTable<String, ArrayList<String>> locationsTempHist = tempInput
+				.groupByKey()
+				.aggregate(() -> new ArrayList<String>(), agg, Materialized.<String, ArrayList<String>, KeyValueStore<Bytes, byte[]>> as("store_locations_temp")
+						.withKeySerde(Serdes.String())
+						.withValueSerde(new Serdes.ListSerde(ArrayList.class, Serdes.String())));
 
 
-		/*
-		Serde<String> stringSerde = Serdes.String();
-		Serde<Long> longSerde = Serdes.Long();
+		locationsTempHist
+				.mapValues(value -> {
+					if (value.size() <= 1) return "0";
 
-		// step 2 - we read that topic as a KTable so that updates are read correctly
-		KTable<String, String> usersAndColoursTable = builder.table("user-keys-and-colors");
+					Float currentTemp = Float.parseFloat(value.get(value.size() - 1));
+					Float lastTemp = Float.parseFloat(value.get(value.size() - 2));
 
-		// step 3 - we count the occurences of colours
-		KTable<String, Long> favouriteColours = usersAndColoursTable
-				// 5 - we group by colour within the KTable
-				.groupBy((user, colour) -> new KeyValue<>(colour, colour))
-				.count();
+					if (currentTemp - lastTemp >= 5) return "1";
+					else if (currentTemp - lastTemp < -5) return "-1";
 
-		// 6 - we output the results to a Kafka Topic - don't forget the serializers
-		favouriteColours.toStream()
-				.peek((key, value) -> System.out.println("Depois de virar ktable Key:valor " + key +":"+ value))
-				.to("favorite-color-output", Produced.with(Serdes.String(),Serdes.Long()));
+					return "0";
+				})
+				.toStream()
+				.to("change");
 
-		// saidas para teste
-		KStream<String, Long> saidas = builder.stream("favorite-color-output",
-				Consumed.with(Serdes.String(), Serdes.Long()));
-		saidas.peek((key, value) -> System.out.println("SAIDA Key:" + key +":"+ value));
-		*/
 		KafkaStreams streams = new KafkaStreams(builder.build(), config);
 
 		streams.setUncaughtExceptionHandler(ex -> {
@@ -102,6 +107,5 @@ public class KafkaStreamsApplication {
 		// shutdown hook to correctly close the streams application
 		Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
 		System.out.println("Streams começo");
-
 	}
 }

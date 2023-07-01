@@ -33,7 +33,10 @@ def change_retorno_para_api(message, type):
         value = message.value
         for i,codes in enumerate(RETORNO_PARA_API):
             if(codes["code"] == state):
-                RETORNO_PARA_API[i]["avisos"][type] = value == "true"
+                if type != "change":
+                    RETORNO_PARA_API[i]["avisos"][type] = value == "true"
+                else:
+                    RETORNO_PARA_API[i]["avisos"][type] = int(value)
                 escrever_jsons_em_arquivo(RETORNO_PARA_API,'retorno_api.json')
 
 consumer.subscribe(['heat','rain','change'])

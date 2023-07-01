@@ -42,4 +42,4 @@ while True:
     producer.send('clima', data).add_callback(on_send_success).add_errback(on_send_error)
 
     #Sleep
-    time.sleep(10000)
+    time.sleep(5)
