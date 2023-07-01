@@ -39,6 +39,21 @@ TOPICOS
                 -> Flag de situações complexas
         )
 
+
+TRABALHO 2
+
+ Situação complexa (só que no kafka streams)
+
+- Temperatura alta e alto indice UV (Passe protetor e procure ficar na sombra)
+- Chuva e Vento (Se agaselhe e evite sair na rua)
+- Variação brusca de temperatura 5 graus em 1 hora
+
+ Situações novas
+
+ - Média de temperatura em uma janela de tempo de 12 horas (máximo)
+ - 
+
+
 COMANDOS:
 
 Iniciar o Zookeeper:
