@@ -2,25 +2,48 @@ from kafka import KafkaProducer, KafkaConsumer, TopicPartition
 import json
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
+from avisos_db_fake import JSON_AVISOS
 
 TOPIC="avisos"
 
 # To consume latest messages and auto-commit offsets
 consumer = KafkaConsumer(bootstrap_servers=['localhost:9092'],
-                        value_deserializer=lambda m: json.loads(m.decode('utf-8')),
+                        value_deserializer=lambda m: m.decode('utf-8'),
                         auto_offset_reset='earliest')
 
 
-def get_last_offset_secundary():
-    
-    consumer.subscribe(TOPIC)
-    partition = TopicPartition(TOPIC, 0)
-    end_offset = consumer.end_offsets([partition])
-    consumer.seek(partition,list(end_offset.values())[0]-1)
+global RETORNO_PARA_API
+RETORNO_PARA_API = JSON_AVISOS
 
-    for m in consumer:
-        item = m
-        break
 
-    return item.value
+import json
 
+def escrever_jsons_em_arquivo(lista_jsons, nome_arquivo):
+    with open(nome_arquivo, 'w') as arquivo:
+        for json_objeto in lista_jsons:
+            json.dump(json_objeto, arquivo)
+            arquivo.write('\n')
+
+def return_avisos():
+    return RETORNO_PARA_API
+
+def change_retorno_para_api(message, type):
+    for message in messages:
+        state = message.key.decode('utf-8')
+        value = message.value
+        for i,codes in enumerate(RETORNO_PARA_API):
+            if(codes["code"] == state):
+                RETORNO_PARA_API[i]["avisos"][type] = value == "true"
+                escrever_jsons_em_arquivo(RETORNO_PARA_API,'retorno_api.json')
+
+consumer.subscribe(['heat','rain','change'])
+
+if __name__ == "__main__":
+    while True:
+        # poll messages each certain ms
+        raw_messages = consumer.poll(
+            timeout_ms=5000, max_records=81
+        )
+        # for each messages batch
+        for topic_partition, messages in raw_messages.items():
+            change_retorno_para_api(messages,topic_partition.topic)

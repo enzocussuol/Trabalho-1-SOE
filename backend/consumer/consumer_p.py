@@ -65,6 +65,6 @@ def save_last_offsets():
         elif( city["data"]["temperature"] - city2["data"]["temperature"] < -5):
             avisos["change"] = -1
         
-        data.append({"code":city["code"], "avisos":avisos}) 
+        data.append({"code":city["code"], "avisos":avisos})
 
     producer.send('avisos', data).add_callback(on_send_success).add_errback(on_send_error)
