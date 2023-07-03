@@ -4,7 +4,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -12,7 +13,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -20,7 +22,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -28,7 +31,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -36,7 +40,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -44,7 +49,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -52,7 +58,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -60,7 +67,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -68,7 +76,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -76,7 +85,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -84,7 +94,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -92,7 +103,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -100,7 +112,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -108,7 +121,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -116,7 +130,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -124,7 +139,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -132,7 +148,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -140,7 +157,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -148,7 +166,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -156,7 +175,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -164,7 +184,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -172,7 +193,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -180,7 +202,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -188,7 +211,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -196,7 +220,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -204,7 +229,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   },
   {
@@ -212,7 +238,8 @@ JSON_AVISOS = [
     "avisos": {
       "heat": False,
       "rain": False,
-      "change": 0
+      "change": 0,
+      "avg": -99
     }
   }
 ]

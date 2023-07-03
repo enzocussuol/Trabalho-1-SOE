@@ -62,7 +62,7 @@ zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties ( Linux )
 
 Iniciar o kafka:
 .\bin\windows\kafka-server-start.bat .\config\server.properties
-kafka-server-start.sh /opt/kafka/config/server.properties.properties
+kafka-server-start.sh /opt/kafka/config/server.properties
 
 Criar um topico:
 .\bin\windows\kafka-topics.bat --create --topic clima --bootstrap-server localhost:9092

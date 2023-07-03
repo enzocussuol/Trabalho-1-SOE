@@ -73,7 +73,8 @@ export function App() {
           code: element.code,
           heat: element.avisos.heat,
           rain: element.avisos.rain,
-          change: element.avisos.change
+          change: element.avisos.change,
+          avg: element.avisos.avg
         })
       });
 
@@ -93,7 +94,7 @@ export function App() {
         <span id="wind" className="cursor-pointer" onClick={() => changeCurrentExhibitedInfo(1)}>Vento</span>
         <span id="uv" className="cursor-pointer" onClick={() => changeCurrentExhibitedInfo(2)}>Índice UV</span>
         <span id="precipitation" className="cursor-pointer" onClick={() => changeCurrentExhibitedInfo(3)}>Precipitação</span>
-        <span id="avisos" className="cursor-pointer" onClick={() => changeCurrentExhibitedInfo(4)}>Alertas</span>
+        <span id="avisos" className="cursor-pointer" onClick={() => changeCurrentExhibitedInfo(4)}>Alertas e Média de Temperatura</span>
       </div>
 
       {(currentExhibitedInfo >= 0 && currentExhibitedInfo <= 3) ? (

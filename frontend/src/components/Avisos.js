@@ -11,6 +11,7 @@ function Avisos({ dataList }) {
                             <th>☀️ ➡️ 🧴</th>
                             <th>💨☔ ➡️ 🧣</th>
                             <th>🥵 🔃 🥶</th>
+                            <th>📈</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -20,6 +21,7 @@ function Avisos({ dataList }) {
                                 <td>{data.heat ? "☀️" : "⛅"}</td>
                                 <td>{data.rain ? "☔" : "🌂"}</td>
                                 <td>{data.change === -1 ? "⬇️" : data.change === 1 ? "⬆️" : "↔"}</td>
+                                <td>{(Math.round(data.avg * 100) / 100).toFixed(2)}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -31,6 +33,7 @@ function Avisos({ dataList }) {
                 <p>☀️ ➡️ 🧴: Temperatura alta e alto indice UV (Passe protetor e procure ficar na sombra)</p>
                 <p>💨☔ ➡️ 🧣: Chuva e Vento (Se agaselhe e evite sair na rua)</p>
                 <p>🥵 🔃 🥶: Variação brusca de temperatura 5 graus em 1 hora</p>
+                <p>📈: Média de Temperatura</p>
             </div>
         </>
     );

@@ -33,19 +33,21 @@ def change_retorno_para_api(message, type):
         value = message.value
         for i,codes in enumerate(RETORNO_PARA_API):
             if(codes["code"] == state):
-                if type != "change":
-                    RETORNO_PARA_API[i]["avisos"][type] = value == "true"
-                else:
+                if type == "change":
                     RETORNO_PARA_API[i]["avisos"][type] = int(value)
+                elif type == "avg":
+                    RETORNO_PARA_API[i]["avisos"][type] = float(value)
+                else:
+                    RETORNO_PARA_API[i]["avisos"][type] = value == "true"
                 escrever_jsons_em_arquivo(RETORNO_PARA_API,'retorno_api.json')
 
-consumer.subscribe(['heat','rain','change'])
+consumer.subscribe(['heat','rain','change','avg'])
 
 if __name__ == "__main__":
     while True:
         # poll messages each certain ms
         raw_messages = consumer.poll(
-            timeout_ms=5000, max_records=81
+            timeout_ms=5000, max_records=108
         )
         # for each messages batch
         for topic_partition, messages in raw_messages.items():
