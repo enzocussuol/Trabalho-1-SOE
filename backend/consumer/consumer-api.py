@@ -16,7 +16,6 @@ app.add_middleware(
 @app.get("/clima")
 async def GET_clima():
     item = get_last_offset()
-    save_last_offsets()
     json_compatible_item_data = jsonable_encoder(item)
     return JSONResponse(content=json_compatible_item_data)
 
